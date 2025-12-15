@@ -7,7 +7,7 @@
 						{{ $post['title'] }}
 					</h2>
 				</a>
-				<a href="#" wire:navigate>{{ $post['author'] }}</a> | 10 November 2025
+				<a href="#" wire:navigate>{{ $post['author'] }}</a> | {{ $post->created_at->diffForHumans() }}
 				<p class="my-4 font-light">
 						{{ Str::limit($post['body'],150) }}
 				</p>

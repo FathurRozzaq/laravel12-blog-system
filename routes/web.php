@@ -17,10 +17,15 @@ Route::get('/posts', function () {
     return view('posts', ['title' => 'Blog', 'posts' => Post::all()]);
 });
 
-Route::get('/posts/{slug}', function($slug){
-    $post = Post::find($slug);
+// Route::get('/posts/{id}', function($id){ //function find secara default gunakan id sebagai parameter slug untuk pencarian data
+//     $post = Post::find($id);
 
-    return view('post', ['title' => 'SIngle Post', 'post'=>$post]);
+//     return view('post', ['title' => 'SIngle Post', 'post'=>$post]);
+// });
+
+Route::get('/posts/{post:slug}', function(Post $post ){ //Model Binding by Slug: mencari data berdasarkan slug. Menggunakan type-hinting untuk otomatis mengikat parameter route ke model Post berdasarkan kolom 'slug'.
+
+    return view('post', ['title' => 'Single Post', 'post'=>$post]);
 });
 
 Route::get('/contact', function () {

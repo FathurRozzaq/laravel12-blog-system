@@ -2,41 +2,10 @@
 namespace App\Models;
 
 use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Model;
 
-  class Post {
-    public static function all() {
-        return [
-        [
-            'id' => 1,
-            'slug' => 'pergerakan-harga-koin-crypto',
-            'title'  => 'Pergerakan Harga Koin Crypto',
-            'author' => 'Path Founder',
-            'body'   => 'Solana, BNB, XRP merupakan mata uang crypto yang sudah bertahan selama lebih dari 5 tahun. Pergerakkan harganya
-                    masih tergolong mengikuti trend pergerakan harga bitcoin. Kalau harga bitcoin naik, harga koin-koin tersebut
-                    kemungkinan besar akan naik, begitu pula kalau bitcoin turun, harga mereka akan turun juga.',
-        ],
-        [
-            'id' => 2,
-            'slug' => 'memahami-teknologi-di-balik-nft',
-            'title'  => 'Memahami Teknologi di Balik NFT',
-            'author' => 'Crypto Today',
-            'body'   => 'Non-Fungible Token, atau NFT, telah mengubah cara kita melihat kepemilikan digital. Berbeda dari mata uang kripto seperti Bitcoin, setiap NFT unik dan tidak dapat dipertukarkan. Teknologi ini bergantung pada blockchain, biasanya Ethereum, untuk memverifikasi keaslian dan melacak riwayat kepemilikan.',
-        ],
-        [
-            'id' => 3,
-            'slug' => 'apa-itu-the-merge-ethereum',
-            'title'  => 'Apa Itu \'The Merge\' Ethereum?',
-            'author' => 'Blockchain Weekly',
-            'body'   => 'Pembaruan "The Merge" adalah transisi besar jaringan Ethereum dari mekanisme konsensus Proof-of-Work (PoW) ke Proof-of-Stake (PoS). Langkah ini bertujuan untuk secara drastis mengurangi konsumsi energi jaringan, meningkatkan skalabilitas, dan mempersiapkan pembaruan di masa depan. Ini adalah salah satu peristiwa paling ditunggu dalam sejarah kripto.',
-        ],
-        [
-            'id' => 4,
-            'slug' => 'masa-depan-keuangan-terdesentralisasi-defi',
-            'title'  => 'Masa Depan Keuangan Terdesentralisasi (DeFi)',
-            'author' => 'Path Founder',
-            'body'   => 'DeFi, atau Keuangan Terdesentralisasi, merujuk pada ekosistem aplikasi keuangan yang dibangun di atas jaringan blockchain. Tujuannya adalah untuk menciptakan kembali sistem keuangan tradisional—seperti pinjaman, tabungan, dan perdagangan—tanpa memerlukan perantara terpusat seperti bank atau lembaga keuangan lainnya.',
-        ]
-    ];}
+  class Post extends Model{
+    
     
     /**
      * Cari posting berdasarkan slug.
@@ -98,14 +67,14 @@ use Illuminate\Support\Arr;
      * - Fungsi ini melakukan iterasi linear terhadap seluruh entri (kompleksitas O(n)).
      * - Bergantung pada Arr::first dan static::all() untuk pengambilan dan pemilahan data.
      */
-    public static function find($slug){
-      $post = Arr::first(static::all(), fn($post) => $post['slug'] == $slug);
+    // public static function find($slug){
+    //   $post = Arr::first(static::all(), fn($post) => $post['slug'] == $slug);
 
-      if (!$post) {
-          abort(404);
-      } else {
-          return $post;
-      }
-    }
+    //   if (!$post) {
+    //       abort(404);
+    //   } else {
+    //       return $post;
+    //   }
+    // }
 }
 ?>

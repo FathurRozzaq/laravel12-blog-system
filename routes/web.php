@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +38,13 @@ Route::get('/contact', function () {
 });
 
 
+/* Author's Posts Route 
+    cara kerja:
+    1. ketika route diakses, laravel akan mencari user berdasarkan id yang dikirim di url
+    2. laravel akan membuat instance user dan mengisinya dengan data user yang ditemukan
+    3. kemudian laravel akan memanggil relasi posts() pada model User untuk mendapatkan semua post yang ditulis oleh user tersebut
+    4. akhirnya laravel akan mengirim data user dan posts ke view 'posts' untuk ditampilkan
+*/
+Route::get('/authors/{user}', function(User $user ){ 
+    return view('posts', ['title' => 'Articles by ' . $user->name, 'posts'=>$user->posts]);//memanggil relasi posts dari model user
+});

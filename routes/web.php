@@ -2,7 +2,7 @@
 
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Arr;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 
@@ -47,4 +47,15 @@ Route::get('/contact', function () {
 */
 Route::get('/authors/{user}', function(User $user ){ 
     return view('posts', ['title' => 'Articles by ' . $user->name, 'posts'=>$user->posts]);//memanggil relasi posts dari model user
+});
+
+/* Category's Posts Route 
+    cara kerja:
+    1. ketika route diakses, laravel akan mencari category berdasarkan id yang dikirim di url
+    2. laravel akan membuat instance category dan mengisinya dengan data category yang ditemukan
+    3. kemudian laravel akan memanggil relasi posts() pada model Category untuk mendapatkan semua post yang berada di category tersebut
+    4. akhirnya laravel akan mengirim data category dan posts ke view 'posts' untuk ditampilkan
+*/
+Route::get('/categories/{category}', function(Category $category ){ 
+    return view('posts', ['title' => 'Articles in Category: ' . $category->name, 'posts'=>$category->posts]);//memanggil relasi posts dari model category
 });

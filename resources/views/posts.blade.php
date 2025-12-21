@@ -2,16 +2,16 @@
 		<x-slot:title>{{ $title }}</x-slot:title>
 		@foreach ($posts as $post)
 				<article class="py-8 max-w-screen-md border-b border-gray-300">
-				<a wire:navigate href="posts/{{ $post['slug'] }}" class="hover:underline">
+				<a wire:navigate href="/posts/{{ $post->slug }}" class="hover:underline">
 					<h2 class="mb-1 text-3xl tracking-tight font-bold text-gray-900">
-						{{ $post['title'] }}
+						{{ $post->title }}
 					</h2>
 				</a>
-				<a href="#" wire:navigate>{{ $post['author'] }}</a> | {{ $post->created_at->diffForHumans() }}
+				<a href="/authors/{{ $post->author->id }}" class="hover:underline">{{ $post->author->name }} </a> | {{ $post->created_at->diffForHumans() }}
 				<p class="my-4 font-light">
-						{{ Str::limit($post['body'],150) }}
+						{{ Str::limit($post->body,150) }}
 				</p>
-				<a href="posts/{{ $post['slug'] }}" wire:navigate class="font-medium text-blue-500 hover:underline">Read more &raquo;</a>
+				<a href="/posts/{{ $post->slug }}" wire:navigate class="font-medium text-blue-500 hover:underline">Read more &raquo;</a>
 		</article>
 		@endforeach
 </x-layout>

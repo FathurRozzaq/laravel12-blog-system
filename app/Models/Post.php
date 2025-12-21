@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Post extends Model
 {
     // The attributes that are mass assignable.
-    protected $fillable = ['title', 'slug', 'author', 'excerpt', 'body'];
+    protected $fillable = ['title', 'slug', 'author', 'category', 'body'];
 
     /**
      * Get the author that owns the post.
@@ -17,5 +17,14 @@ class Post extends Model
     public function author() : BelongsTo {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the category that owns the post.
+     */
+    public function category() : BelongsTo {
+        return $this->belongsTo(Category::class);
+    }
+    
+    /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
 }

@@ -4,10 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'slug', 'author', 'excerpt', 'body']; //Mass Assignment: menentukan atribut mana yang boleh diisi secara massal (mass assignable) saat membuat atau memperbarui instance model melalui eloquent. Ini membantu melindungi terhadap serangan mass assignment dengan membatasi atribut yang dapat diisi melalui input pengguna.
+    // The attributes that are mass assignable.
+    protected $fillable = ['title', 'slug', 'author', 'excerpt', 'body'];
 
+    /**
+     * Get the author that owns the post.
+     */
+    public function author() : BelongsTo {
+        return $this->belongsTo(User::class);
+    }
     use HasFactory;
 }

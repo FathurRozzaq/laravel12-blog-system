@@ -7,8 +7,9 @@
 						{{ $post->title }}
 					</h2>
 				</a>
-				<a href="/authors/{{ $post->author->username }}" class="hover:underline">{{ $post->author->name }} </a> | <a href="/categories/{{ $post->category->slug }}" class="hover:underline">{{ $post->category->name }}</a> | {{ $post->created_at->diffForHumans() }}
-				{{ $post->created_at->diffForHumans() }}
+				<span class="text-gray-900">By</span>
+				<a  href="/authors/{{ $post->author->username }}" class="text-gray-500 hover:underline">{{ $post->author->name }} </a> | <a href="/categories/{{ $post->category->slug }}" class="text-gray-500 hover:underline">{{ $post->category->name }}</a> |
+				<span class="text-gray-500">{{ $post->created_at->diffForHumans() }}</span>
 				<p class="my-4 font-light">
 						{{ Str::limit($post->body,150) }}
 				</p>

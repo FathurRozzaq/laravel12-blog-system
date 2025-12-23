@@ -45,8 +45,8 @@ Route::get('/contact', function () {
     3. kemudian laravel akan memanggil relasi posts() pada model User untuk mendapatkan semua post yang ditulis oleh user tersebut
     4. akhirnya laravel akan mengirim data user dan posts ke view 'posts' untuk ditampilkan
 */
-Route::get('/authors/{user}', function(User $user ){ 
-    return view('posts', ['title' => 'Articles by ' . $user->name, 'posts'=>$user->posts]);//memanggil relasi posts dari model user
+Route::get('/authors/{user:username}', function(User $user ){ 
+    return view('posts', ['title' => count($user->posts). ' Articles by ' . $user->name, 'posts'=>$user->posts]);//memanggil relasi posts dari model user
 });
 
 /* Category's Posts Route 
@@ -56,6 +56,6 @@ Route::get('/authors/{user}', function(User $user ){
     3. kemudian laravel akan memanggil relasi posts() pada model Category untuk mendapatkan semua post yang berada di category tersebut
     4. akhirnya laravel akan mengirim data category dan posts ke view 'posts' untuk ditampilkan
 */
-Route::get('/categories/{category}', function(Category $category ){ 
-    return view('posts', ['title' => 'Articles in Category: ' . $category->name, 'posts'=>$category->posts]);//memanggil relasi posts dari model category
+Route::get('/categories/{category:slug}', function(Category $category ){ 
+    return view('posts', ['title' => count($category->posts). ' Articles in Category: ' . $category->name, 'posts'=>$category->posts]);//memanggil relasi posts dari model category
 });

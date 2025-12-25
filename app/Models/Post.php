@@ -11,6 +11,8 @@ class Post extends Model
     // The attributes that are mass assignable.
     protected $fillable = ['title', 'slug', 'author', 'category', 'body'];
 
+    protected $with = ['author', 'category']; //Eager Loading Default: setiap kali model Post diambil, relasi author dan category akan otomatis dimuat bersama-sama tanpa perlu memanggilnya secara eksplisit.
+
     /**
      * Get the author that owns the post.
      */

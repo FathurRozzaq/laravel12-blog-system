@@ -15,7 +15,9 @@ Route::get('/about', function () {
 });
 
 Route::get('/posts', function () {
-    return view('posts', ['title' => 'Blog', 'posts' => Post::all()]);
+    // $post = Post::with(['author', 'category'])->get(); //eager loading untuk mengurangi query ke database saat mengambil relasi author dan category. Cara kerja: dengan menambahkan method with() sebelum get(), laravel akan mengambil data relasi author dan category bersamaan dengan data post dalam satu query.
+
+    return view('posts', ['title' => 'Blog', 'posts' => Post::all()]); //mengirim semua data post ke view posts
 });
 
 // Route::get('/posts/{id}', function($id){ //function find secara default gunakan id sebagai parameter slug untuk pencarian data
@@ -46,6 +48,8 @@ Route::get('/contact', function () {
     4. akhirnya laravel akan mengirim data user dan posts ke view 'posts' untuk ditampilkan
 */
 Route::get('/authors/{user:username}', function(User $user ){ 
+    // $posts = $user->posts->load('category','author'); //load digunakan untuk eager loading relasi category dan author pada collection posts yang sudah diambil sebelumnya. Berbeda dengan with() yang digunakan sebelum pengambilan data, load() digunakan setelah data diambil untuk memuat relasi tambahan sebaba data posts sudah ada.
+
     return view('posts', ['title' => count($user->posts). ' Articles by ' . $user->name, 'posts'=>$user->posts]);//memanggil relasi posts dari model user
 });
 
@@ -57,5 +61,7 @@ Route::get('/authors/{user:username}', function(User $user ){
     4. akhirnya laravel akan mengirim data category dan posts ke view 'posts' untuk ditampilkan
 */
 Route::get('/categories/{category:slug}', function(Category $category ){ 
+    // $posts = $category->posts->load('category','author'); //load digunakan untuk eager loading relasi category dan author pada collection posts yang sudah diambil sebelumnya. Berbeda dengan with() yang digunakan sebelum pengambilan data, load() digunakan setelah data diambil untuk memuat relasi tambahan sebaba data posts sudah ada.
+
     return view('posts', ['title' => count($category->posts). ' Articles in Category: ' . $category->name, 'posts'=>$category->posts]);//memanggil relasi posts dari model category
 });

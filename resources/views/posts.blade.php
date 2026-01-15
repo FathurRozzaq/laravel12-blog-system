@@ -3,7 +3,8 @@
 
 		<div class="py-4 px-4 mx-auto max-w-screen-xl lg:px-6">
 				<div class="mx-auto max-w-screen-md sm:text-center">
-						<form>
+					{{-- form ini untuk pencarian artikel menggunakan metode GET --}}
+					<form method="GET" action="/posts">
 								<div class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
 										<div class="relative w-full">
 												<label for="search" class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search</label>
@@ -13,8 +14,9 @@
                             </svg>
 												</div>
 												<input
-														class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-														placeholder="Search for article" type="search" id="search" wire:model="search" />
+														class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 placeholder:text-gray-400 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+														placeholder="Search for article" type="search" id="search" name="search" wire:model="search" />
+														{{-- wire:model digunakan untuk mengikat input pencarian dengan properti search di komponen Livewire. --}}
 										</div>
 										<div>
 												<button type="submit"

@@ -1,15 +1,5 @@
 <x-layout>
 		<x-slot:title>{{ $title }}</x-slot:title>
-			{{-- <article class="py-8 max-w-screen-md border-b border-gray-300">
-				<h2 class="mb-1 text-3xl tracking-tight font-bold text-gray-900">
-						{{ $post->title }}
-					</h2>
-				<a wire:navigate href="/about" wire:navigate>{{ $post->author->name }}</a> | 10 November 2025
-				<p class="my-4 font-light">
-						{{ $post->body }}
-				</p>
-				<a href="/posts" wire:navigate class="font-medium text-blue-500 hover:underline">&laquo;Back</a>
-		</article> --}}
 
 <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
   <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
@@ -20,9 +10,9 @@
                   <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                       <img class="mr-4 w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Jese Leos">
                       <div>
-                          <a href="/authors/{{ $post->author->username }}" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{ $post->author->name }}</a>
+                          <a wire:navigate href="/posts?author={{ $post->author->username }}" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{ $post->author->name }} </a>
                           <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">{{ $post->created_at->format('M. d, Y') }}</time></p>
-													<a wire:navigate href="/categories/{{ $post->category->slug }}">
+													<a wire:navigate href="/posts?category={{ $post->category->slug }}">
 														<span class="bg-{{ $post->category->color }}-100 text-{{ $post->category->color }}-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-{{ $post->category->color }}-200 dark:text-{{ $post->category->color }}-800">
 															{{ $post->category->name }}
 														</span>

@@ -14,17 +14,23 @@ Route::get('/about', function () {
     return view('about', ['title' => 'About', 'nama' => 'Path Founder']);
 });
 
+// ---------------------------------------------------------------------
+    // DOKUMENTASI & ALUR KERJA:
+    // Silakan Ctrl + Klik pada path di bawah ini untuk membuka penjelasannya:
+    //
+    // resources/views/algoritma_belajar/search.docx
+    // ---------------------------------------------------------------------
+    //
+    // Menggunakan scope filter. 
+    // request(['search', 'category']) akan mengambil query string... ?search=.. dan ?category=.. 
+    // lalu mengirimnya sebagai array ke scopeFilter di model.
+    // alur kerja search secara detail ada di resources\views\algoritma untuk belajar\search.docx
 Route::get('/posts', function () {
-    // $post = Post::with(['author', 'category'])->get(); //eager loading untuk mengurangi query ke database saat mengambil relasi author dan category. Cara kerja: dengan menambahkan method with() sebelum get(), laravel akan mengambil data relasi author dan category bersamaan dengan data post dalam satu query.
+    $posts = Post::latest()->filter(request(['search', 'category', 'author']))->get();
 
-    return view('posts', ['title' => 'Blog', 'posts' => Post::all()]); //mengirim semua data post ke view posts
+    return view('posts', ['title' => 'Blog', 'posts' => $posts]);
 });
 
-// Route::get('/posts/{id}', function($id){ //function find secara default gunakan id sebagai parameter slug untuk pencarian data
-//     $post = Post::find($id);
-
-//     return view('post', ['title' => 'SIngle Post', 'post'=>$post]);
-// });
 
 Route::get('/posts/{post:slug}', function(Post $post ){ //Model Binding by Slug: mencari data berdasarkan slug. Menggunakan type-hinting untuk otomatis mengikat parameter route ke model Post berdasarkan kolom 'slug'.
 

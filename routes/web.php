@@ -26,7 +26,7 @@ Route::get('/about', function () {
     // lalu mengirimnya sebagai array ke scopeFilter di model.
     // alur kerja search secara detail ada di resources\views\algoritma untuk belajar\search.docx
 Route::get('/posts', function () {
-    $posts = Post::latest()->filter(request(['search', 'category', 'author']))->get();
+    $posts = Post::latest()->filter(request(['search', 'category', 'author']))->paginate(6)->withQuerystring(); //paginate(6) artinya menampilkan 6 data per halaman. withQueryString() berfungsi untuk mempertahankan query string pada pagination links.
 
     return view('posts', ['title' => 'Blog', 'posts' => $posts]);
 });

@@ -58,6 +58,7 @@
 						</form>
 				</div>
 		</div>
+		{{ $posts->links() }} {{-- Pagination Links --}}
 
 		<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-0">
 				<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
